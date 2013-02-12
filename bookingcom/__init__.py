@@ -138,6 +138,15 @@ class XmlRpcEndPointIterator(BaseEndPointIterator):
 
     @classmethod
     def create_url(klass, end_point, base_url=None):
+        """Helper method creates end point urls
+
+        :param end_point: end point name
+        :param type: str
+
+        :param base_url: base url
+        :param type: str
+
+        """
         return '%sbookings.%s' % (base_url or klass.BASE_URL, end_point)
 
     def _fetch_buffer(self):
@@ -193,9 +202,12 @@ class BookingcomClient(object):
         """Constructor
 
         :param end_point_iterator_class: end point iterator class
-        :type end_point_iterator_class: class
-        """
+        :param type: class
 
+        :param kwargs: keyword arguments passed to iterator class constructor
+        :param type: dict
+
+        """
         def generate_end_point_iterator(end_point):
             def aux(rows=None):
                 rows = rows or BaseEndPointIterator._MAX_ROWS
